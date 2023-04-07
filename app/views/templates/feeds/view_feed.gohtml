@@ -1,0 +1,8 @@
+{{define "view_feed"}}
+    <div data-description="{{.Description}}">
+        <input type="hidden" name="id" value="{{.ID}}"/>
+        <button class="delete" hx-target="closest div" hx-swap="outerHTML" hx-delete="/feeds/{{.ID}}">❌</button>
+        <button class="edit" hx-target="closest div" hx-swap="outerHTML" hx-get="/feeds/{{.ID}}/edit">📝</button>
+        <span {{if .Complete}} class="done" {{end}} hx-target="closest div" hx-swap="outerHTML" hx-post="/feeds/{{.ID}}/toggle">{{.Description}}</span>
+    </div>
+{{end}}

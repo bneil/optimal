@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header">
+        Recent Feeds
+    </div>
+    <div class="card-body">
+        {{range .RecentFeeds}}
+            {{template "view_feed" .}}
+        {{end}}
+    </div>
+</div>

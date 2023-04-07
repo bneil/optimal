@@ -1,0 +1,16 @@
+<div class="container pt-2">
+    <div class="row">
+        {{template "feeds/feeds" . }}
+    </div>
+    <div class="row pt-2">
+        <div class="col-sm">
+            {{template "feeds/homepage/recent" . }}
+        </div>
+        <div class="col-sm">
+            {{template "feeds/homepage/popular" . }}
+        </div>
+        <div class="col-sm">
+            {{template "feeds/homepage/categorized" .}}
+        </div>
+    </div>
+</div>

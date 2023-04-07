@@ -1,0 +1,12 @@
+app:
+  environment: local
+
+server:
+  port: 443
+  read_timeout: 1m
+
+database:
+  location: "database/local.db"
+
+logger:
+  level: debug

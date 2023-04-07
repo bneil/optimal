@@ -1,0 +1,10 @@
+<div class="card px-0">
+    <div class="card-header">
+        Latest Updated
+    </div>
+    <div class="card-body">
+        {{range .Feeds}}
+            {{template "view_feed" .}}
+        {{end}}
+    </div>
+</div>

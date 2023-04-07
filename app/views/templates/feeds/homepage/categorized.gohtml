@@ -1,0 +1,10 @@
+<div class="card">
+    <div class="card-header">
+        Feeds By Category
+    </div>
+    <div class="card-body">
+        {{range .CategorizedFeeds}}
+            {{template "view_feed" .}}
+        {{end}}
+    </div>
+</div>
