@@ -1,7 +1,7 @@
 package main
 
 import (
-	handler "github.com/bneil/gossr_tests/app"
+	"github.com/bneil/gossr_tests/app/api"
 	"github.com/bneil/gossr_tests/app/db"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/html"
@@ -10,18 +10,20 @@ import (
 
 func main() {
 	//quickly setup that db!
-	go db.SetupSqlite()
+	d := db.GetInstance()
+	err := d.SetupDb()
+	if err != nil {
+		panic("couldnt setup db, freak out")
+	}
 
 	engine := html.New("./app/views/templates", ".gohtml")
-	app := fiber.New(fiber.Config{
+	config := fiber.Config{
 		Views:       engine,
 		ViewsLayout: "layouts/main",
-		Prefork:     true,
-	})
+		Prefork:     false,
+	}
+	app := api.SetupRoutes(config)
 	app.Static("/static", "./app/views/static")
-
-	// Attach the handlers
-	handler.AttachHandler(app)
 
 	log.Fatal(app.Listen(":3000"))
 }
