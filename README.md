@@ -1,4 +1,4 @@
-# OPtiMuL :: CloverDB and HTMX Experimentation App
+# OPtiMaL :: CloverDB and HTMX Experimentation App
 
 This web application is designed to allow developers to experiment with CloverDB and HTMX,
 two powerful technologies used for building dynamic, reactive web applications. To That end I thought it
