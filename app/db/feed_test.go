@@ -2,7 +2,7 @@ package db
 
 import (
 	"fmt"
-	"github.com/bneil/gossr_tests/app/model"
+	"github.com/bneil/optimal/app/model"
 	"github.com/google/uuid"
 	"log"
 	"math/rand"

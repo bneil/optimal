@@ -2,7 +2,7 @@ package db
 
 import (
 	"errors"
-	"github.com/bneil/gossr_tests/app/model"
+	"github.com/bneil/optimal/app/model"
 	c "github.com/ostafen/clover/v2"
 	"golang.org/x/exp/slog"
 	"log"

@@ -1,8 +1,8 @@
 package api
 
 import (
-	"github.com/bneil/gossr_tests/app/db"
-	"github.com/bneil/gossr_tests/app/model"
+	"github.com/bneil/optimal/app/db"
+	"github.com/bneil/optimal/app/model"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"golang.org/x/exp/slog"

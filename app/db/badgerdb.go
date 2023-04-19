@@ -1,7 +1,7 @@
 package db
 
 import (
-	"github.com/bneil/gossr_tests/config"
+	"github.com/bneil/optimal/config"
 	c "github.com/ostafen/clover/v2"
 	"golang.org/x/exp/slog"
 	"log"
