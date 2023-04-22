@@ -3,7 +3,7 @@
         Feeds By Category
     </div>
     <div class="card-body">
-        {{range .CategorizedFeeds}}
+        {{range .CategorizedFeeds.Feeds}}
             {{template "view_feed" .}}
         {{end}}
     </div>

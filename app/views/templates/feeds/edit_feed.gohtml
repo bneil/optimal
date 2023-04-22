@@ -1,15 +1,15 @@
 {{define "edit_feed"}}
-    <div data-description="{{.Description}}">
+    <div data-description="{{.Text}}">
         <input type="hidden" name="id" value="{{.ID}}"/>
         <button disabled>❌</button>
         <button disabled>📝</button>
-        <form hx-patch="feeds/{{.ID}}"
+        <form hx-patch="feed/{{.ID}}"
               hx-target="closest div"
               hx-swap="outerHTML"
         >
-            <input type="text" name="name">
+            <input type="text" name="title">
             <input type="submit">
         </form>
-        <span {{if .Complete}} class="done" {{end}}>{{.Description}}</span>
+        <span>{{.Text}}</span>
     </div>
 {{end}}

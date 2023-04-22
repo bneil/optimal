@@ -1,0 +1,17 @@
+{{define "add_feed"}}
+<form action="/feed" method="post">
+    <div class="form-group">
+        <label for="titleInput">Title</label>
+        <input type="text" class="form-control" id="titleInput" name="title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label for="textInput">Text</label>
+        <textarea class="form-control" id="textInput" rows="3" name="text" placeholder="Enter text"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="urlInput">URL</label>
+        <input type="url" class="form-control" id="urlInput" name="html_url" placeholder="Enter URL">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{{ end }}

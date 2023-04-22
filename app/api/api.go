@@ -6,15 +6,19 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"golang.org/x/exp/slog"
+	"net/http"
 )
 
 func SetupRoutes(config fiber.Config) *fiber.App {
 	app := *fiber.New(config)
 	app.Get("/", index)
+	app.Get("/add", addFeed)
 	app.Post("/feed", createFeed)
 	app.Get("/feed/:id", readFeed)
+	app.Get("/feed/:id/edit", editFeed)
 	app.Get("/feeds", readFeeds)
-	app.Put("/feed/:id", updateFeed)
+	app.Patch("/feed/:id", updateFeed)
+	app.Delete("/feed/:id", removeFeed)
 	return &app
 }
 
@@ -35,9 +39,12 @@ func index(c *fiber.Ctx) error {
 		"CategorizedFeeds": feeds,
 	})
 }
+func addFeed(c *fiber.Ctx) error {
+	return c.Render("feeds/add_feed", nil)
+}
 
 func createFeed(c *fiber.Ctx) error {
-	feed := new(model.Feed)
+	feed := model.Feed{}
 	err := c.BodyParser(&feed)
 	if err != nil {
 		return c.Status(fiber.StatusUnprocessableEntity).JSON(fiber.Map{
@@ -47,14 +54,14 @@ func createFeed(c *fiber.Ctx) error {
 
 	feed.ID = uuid.New().String()
 
-	err = db.CreateFeed(feed)
+	err = db.CreateFeed(&feed)
 	if err != nil {
 		return c.Status(fiber.StatusUnprocessableEntity).JSON(fiber.Map{
 			"errors": err.Error(),
 		})
 	}
 
-	return c.Render("view_feed", feed)
+	return c.Redirect("/", http.StatusMovedPermanently)
 }
 
 func readFeed(c *fiber.Ctx) error {
@@ -116,4 +123,27 @@ func updateFeed(c *fiber.Ctx) error {
 	}
 
 	return c.Render("view_feed", feed)
+}
+
+func removeFeed(c *fiber.Ctx) error {
+	id := c.Params("id")
+	removed := db.DeleteFeed(id)
+	message := ""
+	if !removed {
+		message = "<div>Feed was not removed</div>"
+	}
+
+	return c.SendString(message)
+}
+func editFeed(c *fiber.Ctx) error {
+	id := c.Params("id")
+	feed, err := db.GetFeedById(id)
+	if err != nil {
+		slog.Warn("unable to find feed", err)
+		return c.Status(fiber.StatusNotFound).JSON(&fiber.Map{
+			"error": "no feed found",
+		})
+	}
+
+	return c.Render("edit_feed", feed, "")
 }

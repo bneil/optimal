@@ -1,8 +1,8 @@
 {{define "view_feed"}}
-    <div data-description="{{.Description}}">
+    <div data-description="{{.Text}}">
         <input type="hidden" name="id" value="{{.ID}}"/>
-        <button class="delete" hx-target="closest div" hx-swap="outerHTML" hx-delete="/feeds/{{.ID}}">❌</button>
-        <button class="edit" hx-target="closest div" hx-swap="outerHTML" hx-get="/feeds/{{.ID}}/edit">📝</button>
-        <span {{if .Complete}} class="done" {{end}} hx-target="closest div" hx-swap="outerHTML" hx-post="/feeds/{{.ID}}/toggle">{{.Description}}</span>
+        <button class="delete" hx-target="closest div" hx-swap="outerHTML" hx-delete="/feed/{{.ID}}">❌</button>
+        <button class="edit" hx-target="closest div" hx-swap="outerHTML" hx-get="/feed/{{.ID}}/edit">📝</button>
+        <span hx-target="closest div" hx-swap="outerHTML" hx-post="/feed/{{.ID}}/toggle">{{.Title}}</span>
     </div>
 {{end}}

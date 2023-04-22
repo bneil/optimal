@@ -3,7 +3,7 @@
         Popular Feeds
     </div>
     <div class="card-body">
-        {{range .PopularFeeds}}
+        {{range .PopularFeeds.Feeds}}
             {{template "view_feed" .}}
         {{end}}
     </div>

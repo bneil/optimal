@@ -3,7 +3,7 @@
         Latest Updated
     </div>
     <div class="card-body">
-        {{range .Feeds}}
+        {{range .Feeds.Feeds }}
             {{template "view_feed" .}}
         {{end}}
     </div>

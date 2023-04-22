@@ -73,7 +73,8 @@ func CreateFeed(feed *model.Feed) error {
 }
 func DeleteFeed(id string) bool {
 	d := GetInstance()
-	err := d.db.Delete(c.NewQuery(id))
+	remQuery := c.NewQuery(feedCollection).Where(c.Field("id").Eq(id))
+	err := d.db.Delete(remQuery)
 	if err != nil {
 		slog.Error("issue removing", err)
 		return false
