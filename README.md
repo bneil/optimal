@@ -1,8 +1,8 @@
 # OPtiMaL :: CloverDB and HTMX Experimentation App
 
 This web application is designed to allow developers to experiment with CloverDB and HTMX,
-two powerful technologies used for building dynamic, reactive web applications. To That end I thought it
-would be fun to create a way to save and manipulate collection of opml style rss feeds.
+two powerful technologies used for building dynamic, reactive web applications. To that end I thought it
+would be fun to create a way to save and manipulate collection of rss feeds opml style.
 
 ## Getting Started
 
