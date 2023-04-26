@@ -18,12 +18,12 @@ func newFeed(id string) *model.Feed {
 		id = uuid.New().String()
 	}
 	return &model.Feed{
-		ID:      id,
-		Title:   fmt.Sprintf("Title:%d", rand.Int()),
-		Text:    fmt.Sprintf("Text:%d", rand.Int()),
-		Type:    "temp",
-		HtmlUrl: "http://testing.com",
-		XMLUrl:  "http://xml.com",
+		ID:          id,
+		Title:       fmt.Sprintf("Title:%d", rand.Int()),
+		Description: fmt.Sprintf("Description:%d", rand.Int()),
+		Type:        "temp",
+		HtmlUrl:     "http://testing.com",
+		XMLUrl:      "http://xml.com",
 	}
 }
 

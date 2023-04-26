@@ -12,7 +12,7 @@ var (
 	feedCollection = "feeds"
 )
 
-func GetFeeds() (*model.List, error) {
+func GetFeeds() (*model.BlogRoll, error) {
 	d := GetInstance()
 	docs, err := d.db.FindAll(c.NewQuery(feedCollection))
 	if err != nil {
@@ -29,7 +29,7 @@ func GetFeeds() (*model.List, error) {
 		}
 		feeds = append(feeds, feed)
 	}
-	list := model.List{Feeds: feeds}
+	list := model.BlogRoll{Feeds: feeds}
 	return &list, nil
 }
 func GetFeedById(id string) (*model.Feed, error) {
@@ -56,7 +56,7 @@ func CreateFeed(feed *model.Feed) error {
 	d := GetInstance()
 	doc := c.NewDocument()
 	doc.Set("id", feed.ID)
-	doc.Set("text", feed.Text)
+	doc.Set("text", feed.Description)
 	doc.Set("title", feed.Title)
 	doc.Set("type", feed.Type)
 	doc.Set("html_url", feed.HtmlUrl)

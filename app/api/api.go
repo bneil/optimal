@@ -12,13 +12,16 @@ import (
 func SetupRoutes(config fiber.Config) *fiber.App {
 	app := *fiber.New(config)
 	app.Get("/", index)
-	app.Get("/add", addFeed)
+	app.Get("/add", addBlogroll)
+
 	app.Post("/feed", createFeed)
 	app.Get("/feed/:id", readFeed)
 	app.Get("/feed/:id/edit", editFeed)
 	app.Get("/feeds", readFeeds)
 	app.Patch("/feed/:id", updateFeed)
 	app.Delete("/feed/:id", removeFeed)
+
+	app.Post("/blogroll", createBlogroll)
 	return &app
 }
 
@@ -39,8 +42,12 @@ func index(c *fiber.Ctx) error {
 		"CategorizedFeeds": feeds,
 	})
 }
-func addFeed(c *fiber.Ctx) error {
-	return c.Render("feeds/add_feed", nil)
+func addBlogroll(c *fiber.Ctx) error {
+	return c.Render("add_blogroll", nil)
+}
+
+func createBlogroll(c *fiber.Ctx) error {
+	return nil
 }
 
 func createFeed(c *fiber.Ctx) error {
@@ -116,7 +123,7 @@ func updateFeed(c *fiber.Ctx) error {
 
 	if feed != nil {
 		feed.Title = updateFeed.Title
-		feed.Text = updateFeed.Text
+		feed.Description = updateFeed.Description
 		feed.Type = updateFeed.Type
 		feed.HtmlUrl = updateFeed.HtmlUrl
 		feed.XMLUrl = updateFeed.XMLUrl

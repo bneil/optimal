@@ -1,0 +1,24 @@
+{{define "add_blogroll"}}
+<div class="card px-0 mt-5">
+  <div class="card-header">
+    New Blogroll
+  </div>
+  <div class="card-body">
+    <form action="/blogroll" method="post">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" id="title" placeholder="Enter title">
+      </div>
+      <div class="form-group mt-2">
+        <label for="tag">Tags</label>
+        <input type="text" class="form-control" id="tag" placeholder="Enter tag">
+      </div>
+      <div class="form-group mt-2">
+        <label for="category">Category</label>
+        <input type="text" class="form-control" id="category" placeholder="Entertainment">
+      </div>
+      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </form>
+  </div>
+</div>
+{{end}}

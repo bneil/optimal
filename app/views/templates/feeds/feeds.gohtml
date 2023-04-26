@@ -1,10 +1,15 @@
 <div class="card px-0">
     <div class="card-header">
-        Latest Updated
+        Blog Rolls
     </div>
     <div class="card-body">
         {{range .Feeds.Feeds }}
             {{template "view_feed" .}}
         {{end}}
+    </div>
+    <div class="card-footer text-muted">
+        <form method="post" action="/new">
+            <label>New BlogRoll <input type="text" minlength="3" name="name" autofocus/></label>
+        </form>
     </div>
 </div>
