@@ -47,6 +47,7 @@ func addBlogroll(c *fiber.Ctx) error {
 }
 
 func createBlogroll(c *fiber.Ctx) error {
+
 	return nil
 }
 

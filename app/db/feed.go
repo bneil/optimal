@@ -3,7 +3,8 @@ package db
 import (
 	"errors"
 	"github.com/bneil/optimal/app/model"
-	c "github.com/ostafen/clover/v2"
+	cdoc "github.com/ostafen/clover/v2/document"
+	q "github.com/ostafen/clover/v2/query"
 	"golang.org/x/exp/slog"
 	"log"
 )
@@ -14,7 +15,7 @@ var (
 
 func GetFeeds() (*model.BlogRoll, error) {
 	d := GetInstance()
-	docs, err := d.db.FindAll(c.NewQuery(feedCollection))
+	docs, err := d.db.FindAll(q.NewQuery(feedCollection))
 	if err != nil {
 		slog.Error("issue in find all", err)
 		return nil, err
@@ -36,7 +37,8 @@ func GetFeedById(id string) (*model.Feed, error) {
 	d := GetInstance()
 	log.Println("find by id", id)
 
-	doc, err := d.db.FindFirst(c.NewQuery(feedCollection).Where(c.Field("id").Eq(id)))
+	doc, err := d.db.FindFirst(q.NewQuery(feedCollection).
+		Where(q.Field("id").Eq(id)))
 	if err != nil {
 		slog.Error("issue find by id", err)
 		return nil, err
@@ -54,7 +56,7 @@ func GetFeedById(id string) (*model.Feed, error) {
 }
 func CreateFeed(feed *model.Feed) error {
 	d := GetInstance()
-	doc := c.NewDocument()
+	doc := cdoc.NewDocument()
 	doc.Set("id", feed.ID)
 	doc.Set("text", feed.Description)
 	doc.Set("title", feed.Title)
@@ -73,7 +75,7 @@ func CreateFeed(feed *model.Feed) error {
 }
 func DeleteFeed(id string) bool {
 	d := GetInstance()
-	remQuery := c.NewQuery(feedCollection).Where(c.Field("id").Eq(id))
+	remQuery := q.NewQuery(feedCollection).Where(q.Field("id").Eq(id))
 	err := d.db.Delete(remQuery)
 	if err != nil {
 		slog.Error("issue removing", err)

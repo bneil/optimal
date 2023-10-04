@@ -2,7 +2,7 @@ package db
 
 import (
 	"github.com/bneil/optimal/app/model"
-	c "github.com/ostafen/clover/v2"
+	q "github.com/ostafen/clover/v2/query"
 	"golang.org/x/exp/slog"
 )
 
@@ -13,7 +13,8 @@ A blog roll is just a collection of feeds
 
 func GetBlogrolls() (*model.BlogRoll, error) {
 	d := GetInstance()
-	docs, err := d.db.FindAll(c.NewQuery(feedCollection))
+
+	docs, err := d.db.FindAll(q.NewQuery(feedCollection))
 	if err != nil {
 		slog.Error("issue in find all", err)
 		return nil, err
